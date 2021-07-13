@@ -26,7 +26,6 @@ def make_key(key, key_prefix, version):
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wn^nj1$&*7t^=n*@c=jj%c@($*9+j##*)gj!9k8l_2^v*b+ou6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
