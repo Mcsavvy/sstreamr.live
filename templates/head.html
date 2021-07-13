@@ -1,0 +1,122 @@
+<head id="head">
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <meta http-equiv="refresh" content="60"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&family=Supermercado+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="{% static 'js/vanillatoasts.js' %}"></script>
+  <script src="{% static 'toast/mdtoast.min.js' %}" defer></script>
+  <script src="{% static 'toast/cute-alert.js' %}" defer></script>
+  <script src="{% static 'js/notify.js' %}" defer></script>
+  <script src="{% static 'node_modules/clipboard/dist/clipboard.min.js' %}"></script>
+  <link href="{%static 'fontawesome/css/fontawesome.css'%}" rel="stylesheet">
+  <link href="{%static 'fontawesome/css/brands.css'%}" rel="stylesheet">
+  <link href="{%static 'fontawesome/css/solid.css'%}" rel="stylesheet">
+  <link id="mdbootstrap-css" 
+    href="{%static 'css/mdb.min.css'%}"
+    rel="stylesheet"
+  />
+  <link id="mdbootstrap-css" 
+    href="{%static 'toast/mdtoast.min.css'%}"
+    rel="stylesheet"
+  />
+  <link id="mdbootstrap-css" 
+    href="{%static 'toast/style.css'%}"
+    rel="stylesheet"
+  />
+  <script type="text/javascript" src="{% static 'js/theme.js'%}"></script>
+  <link
+    href="{%static 'css/vanillatoasts.css'%}"
+    rel="stylesheet"
+  />
+    <link
+    href="{%static 'css/objects.css'%}"
+    rel="stylesheet"
+  />
+  {% block head %} {% endblock %}
+  {% block custom_style %}
+  <style type="text/css" id="style-sheet">
+    {% for i in font_sizes %}
+      .font-size-{{i}} {
+        font-size: {{i}}px !important;
+      }
+      .height-{{i}} {
+        height: {{i}}px;
+      }
+      .width-{{i}} {
+        width: {{i}}px;
+      }
+      .bd-width-{{i}} {
+        border-width: {{i}}px !important;
+      }
+      {% for br in border_radius %}
+        .{{br}}-{{i}} {
+          border-{{br}}-radius: {{i}}px !important;
+        }
+      {% endfor %}
+    {% endfor %}
+    {% for colour in colour_list %}
+      .{{colour}} {
+        color: var(--{{colour}});
+      }
+      .bd-{{colour}} {
+        border-style: solid;
+        border-color: var(--{{colour}});
+        border-width: .125rem;
+        box-shadow: none;
+        padding: .5rem 1.375rem .375rem;
+        color: var(--{{colour}});
+      }
+      {% for i in font_sizes %}
+        .bd-{{colour}}-{{i}} {
+          border-style: solid !important;
+          border-color: var(--{{colour}}) !important;
+          border-width: {{i}}px !important;
+          box-shadow: none !important;
+          color: var(--{{colour}});
+        }
+        .stroke-{{colour}}-{{i}}{
+          color: transparent;
+          font-size: 1rem;
+          -webkit-text-stroke-width: {{i}}px !important;
+          -webkit-text-stroke-color: var(--{{colour}});
+        }
+        .outline-{{colour}}-{{i}} {
+          outline: var(--{{colour}}) solid {{i}}px;
+        }
+      {% endfor %}
+      .bg-{{colour}} {
+        background-color: var(--{{colour}}) !important;
+      }
+    {% endfor %}
+  </style>
+  <script type="text/javascript">
+    function pushNotifications(){
+      let arguments;
+      {% for message in messages %}
+        arguments = argParser('{{message|safe}}')
+        args = arguments.args
+        kwargs = arguments.kwargs
+        kwargs.type = '{{message.tags}}'
+        notify.toast(
+          arguments.args[0],
+          kwargs
+        );
+      {% endfor %}
+    }
+  </script>
+  <link
+    href="{%static 'css/extras.css'%}"
+    rel="stylesheet"
+  />
+  <script src="{% static 'js/main.js' %}"></script>
+  {% endblock %}
+</head>

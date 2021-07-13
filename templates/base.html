@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" id="{% if is_mobile %}mobile{% else %}not-mobile{% endif %}">
+  {% include 'head.html' %}
+  <body class="bg-bg">
+    <header class="">
+      {% include 'partials/navbar.html' %}
+    </header>
+    <main style="min-height: 25cm">
+      {% block content %}{% endblock %}
+    </main>
+    <br><br>
+    <footer>
+      {% block fab_menu %}
+      <div class="fixed-bottom text-right floating-action-menu" style="bottom: 10px; right: 10px;">
+        <div class="action-menu">
+          {% block fabs %}
+          {% endblock fabs %}
+        </div>
+        <div class="d-block action-button">
+          <button class="btn btn-lg btn-floating fab rounded-circle bg-pm" id="fab-trigger" onclick="handleFab(this)">
+            <i class="fas fa-plus r-bg"></i>
+          </button>
+        </div>
+      </div>
+      {% endblock %}
+      {% include 'partials/footer.html' %}
+    </footer>
+  </body>
+  <style type="text/css">
+    {% if is_mobile %}
+    {% else %}
+    {% endif %}
+    {{style|safe}}
+  </style>
+</html>
